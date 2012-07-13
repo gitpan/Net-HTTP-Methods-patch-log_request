@@ -6,7 +6,7 @@ no warnings;
 
 use parent qw(Module::Patch);
 
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 our %config;
 
@@ -16,8 +16,11 @@ my $p_log_request = sub {
     my $orig = shift;
     my $res = $orig->(@_);
 
+    my $proto = ref($_[0]) =~ /^LWP::Protocol::(\w+)::/ ? $1 : "?";
+
     my $log = Log::Any->get_logger;
-    $log->tracef("HTTP request (%d bytes):\n%s", length($res), $res);
+    $log->tracef("HTTP request (proto=%s, len=%d):\n%s",
+                 $proto, length($res), $res);
     $res;
 };
 
@@ -49,7 +52,7 @@ Net::HTTP::Methods::patch::log_request - Patch module for Net::HTTP::Methods
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -57,9 +60,26 @@ version 0.03
 
  # now all your LWP HTTP requests are logged
 
- use LWP::UserAgent;
- my $ua = LWP::UserAgent->new;
- my $response = $ua->get('...');
+Sample script and output:
+
+ % LOG_SHOW_CATEGORY=1 TRACE=1 perl -MLog::Any::App \
+   -MNet::HTTP::Methods::patch::log_request -MWWW::Mechanize \
+   -e'$mech=WWW::Mechanize->new; $mech->get("http://www.google.com/")'
+ [cat Net.HTTP.Methods.patch.log_request][23] HTTP request (142 bytes):
+ GET / HTTP/1.1
+ TE: deflate,gzip;q=0.3
+ Connection: TE, close
+ Accept-Encoding: gzip
+ Host: www.google.com
+ User-Agent: WWW-Mechanize/1.71
+
+ [cat Net.HTTP.Methods.patch.log_request][70] HTTP request (144 bytes):
+ GET / HTTP/1.1
+ TE: deflate,gzip;q=0.3
+ Connection: TE, close
+ Accept-Encoding: gzip
+ Host: www.google.co.id
+ User-Agent: WWW-Mechanize/1.71
 
 =head1 DESCRIPTION
 
