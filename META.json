@@ -27,8 +27,8 @@
       "runtime" : {
          "requires" : {
             "Log::Any" : 0,
-            "Module::Patch" : "0.05",
-            "Net::HTTP" : "6.03",
+            "Module::Patch" : "0.06",
+            "Net::HTTP::Methods" : "6.00",
             "perl" : "5.010001"
          }
       }
@@ -40,6 +40,6 @@
          "url" : "http://github.com/sharyanto/perl-Net-HTTP-Methods-patch-log_request"
       }
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }
 

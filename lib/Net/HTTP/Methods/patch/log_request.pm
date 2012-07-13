@@ -6,7 +6,7 @@ no warnings;
 
 use parent qw(Module::Patch);
 
-our $VERSION = '0.02'; # VERSION
+our $VERSION = '0.03'; # VERSION
 
 our %config;
 
@@ -17,7 +17,7 @@ my $p_log_request = sub {
     my $res = $orig->(@_);
 
     my $log = Log::Any->get_logger;
-    $log->tracef("HTTP request (%s bytes):\n%s", length($res), $res);
+    $log->tracef("HTTP request (%d bytes):\n%s", length($res), $res);
     $res;
 };
 
@@ -49,13 +49,11 @@ Net::HTTP::Methods::patch::log_request - Patch module for Net::HTTP::Methods
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SYNOPSIS
 
- use Net::HTTP::Methods::patch::log_request
-   -on_unknown_version => 'warn',
-   -on_conflict        => 'warn';
+ use Net::HTTP::Methods::patch::log_request;
 
  # now all your LWP HTTP requests are logged
 

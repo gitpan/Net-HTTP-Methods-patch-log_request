@@ -3,12 +3,10 @@ NAME
     Net::HTTP::Methods
 
 VERSION
-    version 0.02
+    version 0.03
 
 SYNOPSIS
-     use Net::HTTP::Methods::patch::log_request
-       -on_unknown_version => 'warn',
-       -on_conflict        => 'warn';
+     use Net::HTTP::Methods::patch::log_request;
 
      # now all your LWP HTTP requests are logged
 
