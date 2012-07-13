@@ -1,0 +1,41 @@
+NAME
+    Net::HTTP::Methods::patch::log_request - Patch module for
+    Net::HTTP::Methods
+
+VERSION
+    version 0.01
+
+SYNOPSIS
+     use Net::HTTP::Methods;
+     use Net::HTTP::Methods::patch::log_request
+       -on_unknown_version => 'warn',
+       -on_conflict        => 'warn';
+
+     # now all your LWP HTTP requests are logged
+
+     use LWP::UserAgent;
+     my $ua = LWP::UserAgent->new;
+     my $response = $ua->get('...');
+
+DESCRIPTION
+    This module patches LWP::Protocol::http so that raw HTTP request is
+    logged using Log::Any. If you look into LWP::Protocol::http's source
+    code, you'll see that it is already doing that (albeit commented):
+
+      my $req_buf = $socket->format_request($method, $fullpath, @h);
+      #print "------\n$req_buf\n------\n";
+
+FAQ
+  Why not subclass?
+    By patching, you do not need to replace all the client code which uses
+    LWP.
+
+AUTHOR
+    Steven Haryanto <stevenharyanto@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2012 by Steven Haryanto.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
