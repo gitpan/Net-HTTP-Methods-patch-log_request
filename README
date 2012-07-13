@@ -3,10 +3,9 @@ NAME
     Net::HTTP::Methods
 
 VERSION
-    version 0.01
+    version 0.02
 
 SYNOPSIS
-     use Net::HTTP::Methods;
      use Net::HTTP::Methods::patch::log_request
        -on_unknown_version => 'warn',
        -on_conflict        => 'warn';
@@ -18,7 +17,7 @@ SYNOPSIS
      my $response = $ua->get('...');
 
 DESCRIPTION
-    This module patches LWP::Protocol::http so that raw HTTP request is
+    This module patches Net::HTTP::Methods so that raw LWP HTTP request is
     logged using Log::Any. If you look into LWP::Protocol::http's source
     code, you'll see that it is already doing that (albeit commented):
 
@@ -28,7 +27,7 @@ DESCRIPTION
 FAQ
   Why not subclass?
     By patching, you do not need to replace all the client code which uses
-    LWP.
+    LWP (or WWW::Mechanize, etc).
 
 AUTHOR
     Steven Haryanto <stevenharyanto@gmail.com>
