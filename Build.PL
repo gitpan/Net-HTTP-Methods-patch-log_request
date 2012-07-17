@@ -17,14 +17,14 @@ my %module_build_args = (
     "Steven Haryanto <stevenharyanto\@gmail.com>"
   ],
   "dist_name" => "Net-HTTP-Methods-patch-log_request",
-  "dist_version" => "0.04",
+  "dist_version" => "0.05",
   "license" => "perl",
   "module_name" => "Net::HTTP::Methods::patch::log_request",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
     "Log::Any" => 0,
-    "Module::Patch" => "0.06",
+    "Module::Patch" => "0.07",
     "Net::HTTP::Methods" => "6.00",
     "perl" => "5.010001"
   },

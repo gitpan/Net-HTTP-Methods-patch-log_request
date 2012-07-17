@@ -3,7 +3,7 @@ NAME
     Net::HTTP::Methods
 
 VERSION
-    version 0.04
+    version 0.05
 
 SYNOPSIS
      use Net::HTTP::Methods::patch::log_request;
