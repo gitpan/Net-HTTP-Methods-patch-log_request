@@ -15,10 +15,10 @@ meta-spec:
 name: Net-HTTP-Methods-patch-log_request
 requires:
   Log::Any: 0
-  Module::Patch: 0.07
+  Module::Patch: 0.10
   Net::HTTP::Methods: 6.00
   perl: 5.010001
 resources:
   homepage: http://metacpan.org/release/Net-HTTP-Methods-patch-log_request
   repository: http://github.com/sharyanto/perl-Net-HTTP-Methods-patch-log_request
-version: 0.05
+version: 0.06
